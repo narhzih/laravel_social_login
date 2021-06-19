@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, 'home']);
+Route::get('/auth/login/github', [AuthController::class, 'loginWithGithub'])->name('login-github');
+Route::get('/auth/login/github/complete', [AuthController::class, 'doLoginWithGithub'])->name('do-login-github');
+Route::get('/auth/login/facebook', [AuthController::class, 'loginWithFacebook'])->name('login-facebook');
